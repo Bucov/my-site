@@ -1,0 +1,1072 @@
+/* ============================================================
+   LUKA BOSNJAK — CSS JUMPSTARTER
+   Palette: Charcoal / Warm Stone / Acid Yellow / Lime Mist
+   ============================================================ */
+
+/* ── GOOGLE FONTS ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap');
+
+
+
+/* ── VARIABLES ────────────────────────────────────────────── */
+:root {
+  /* Brand colors */
+  --clr-charcoal: #454040;
+  --clr-stone: #605B51;
+  --clr-yellow: #D8D365;
+  --clr-lime: #E6F082;
+  --off-white: #faf8d2;
+  --off-white-stronger: #f7f4b2;
+
+  /* Semantic roles */
+  --bg: #1a1816;
+  --bg-surface: var(--clr-charcoal);
+  --bg-raised: var(--clr-stone);
+  /* ⚠️  --bg-raised se ne koristi nigde u CSS-u */
+  --text-primary: #f5f2ea;
+  --text-secondary: #b8b2a7;
+  --text-muted: #7a756d;
+  --accent: var(--clr-yellow);
+  --accent-soft: var(--clr-lime);
+  --border: rgba(216, 211, 101, 0.15);
+  --border-hover: rgba(216, 211, 101, 0.4);
+
+  /* Typography */
+
+  --font-display: 'Syne', sans-serif;
+
+  --font-body: 'DM Sans', sans-serif;
+
+
+
+  /* Sizing scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3.5rem;
+  --text-5xl: 5rem;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  /* ⚠️  --space-24 se ne koristi nigde u CSS-u */
+  --space-32: 8rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --gutter: clamp(1.5rem, 5vw, 4rem);
+
+  /* Effects */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 32px;
+  /* ⚠️  --radius-xl se ne koristi nigde u CSS-u */
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  /* ⚠️  --shadow-sm se ne koristi nigde u CSS-u */
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  /* ⚠️  --shadow-md se ne koristi nigde u CSS-u */
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
+  --glow-accent: 0 0 32px rgba(216, 211, 101, 0.2);
+
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── RESET ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 300;
+  color: var(--text-primary);
+  background-color: var(--bg);
+  line-height: 1.7;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* ── TYPOGRAPHY ───────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: var(--text-5xl);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: var(--text-4xl);
+}
+
+h3 {
+  font-size: var(--text-3xl);
+}
+
+/* ⚠️  h4, h5, h6 ne postoje u HTML-u — nije greška, korisno za budućnost */
+h4 {
+  font-size: var(--text-2xl);
+}
+
+h5 {
+  font-size: var(--text-xl);
+}
+
+h6 {
+  font-size: var(--text-lg);
+}
+
+p {
+  color: var(--text-secondary);
+  max-width: 65ch;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+em {
+  font-style: italic;
+  color: var(--accent-soft);
+}
+
+small {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* ⚠️  .display se koristi u HTML-u ✅ */
+.display {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+/* ⚠️  .eyebrow se NE koristi nigde u HTML-u — može ostati za budućnost */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ⚠️  'JetBrains Mono' i 'Fira Code' NISU importovani ni u jednom @import!
+       Browser će pasti na system monospace. Zameni sa var(--font-mono) */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  /* ISPRAVLJENO */
+  font-size: 0.9em;
+}
+
+/* ⚠️  code i pre se ne koriste u HTML-u — nije greška, korisno za budućnost */
+code {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 0.1em 0.4em;
+  border-radius: var(--radius-sm);
+  color: var(--accent-soft);
+}
+
+pre {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  overflow-x: auto;
+}
+
+/* ── LAYOUT ───────────────────────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+
+.section {
+  padding-block: var(--space-32);
+}
+
+/* ⚠️  .grid, .grid-2, .grid-3, .grid-4, .grid-auto se NE koriste u HTML-u
+       Mogu ostati kao utility klase za budućnost */
+.grid {
+  display: grid;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+}
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+/* ⚠️  .flex, .flex-center, itd. se NE koriste u HTML-u — utility za budućnost */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-2 {
+  gap: var(--space-2);
+}
+
+.gap-4 {
+  gap: var(--space-4);
+}
+
+.gap-6 {
+  gap: var(--space-6);
+}
+
+.gap-8 {
+  gap: var(--space-8);
+}
+
+/* ── HEADER / NAV ─────────────────────────────────────────── */
+/* ⚠️  Nema <header> elementa u HTML-u! Ovi stilovi se ne primenjuju.
+       Ako dodaš header u HTML ili u JS (main.ts), ovo će raditi. */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--gutter);
+  background: rgba(26, 24, 22, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition-base);
+}
+
+header .logo {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+header .logo span {
+  color: var(--accent);
+}
+
+/* ⚠️  <nav> ne postoji u HTML-u direktno, ali footer.ts ga verovatno dodaje */
+nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+nav a {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width var(--transition-base);
+}
+
+nav a:hover {
+  color: var(--text-primary);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active {
+  color: var(--accent);
+}
+
+/* ── BUTTONS ──────────────────────────────────────────────── */
+/* ⚠️  .btn i varijante se NE koriste u HTML-u — korisno za budućnost */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: var(--accent-soft);
+  box-shadow: var(--glow-accent);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: var(--glow-accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding-inline: var(--space-3);
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+}
+
+.btn-lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-base);
+}
+
+/* ── CARDS ────────────────────────────────────────────────── */
+/* ⚠️  .card i sve card klase se NE koriste u HTML-u — korisno za budućnost */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-lg), var(--glow-accent);
+  transform: translateY(-4px);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.card-body p {
+  font-size: var(--text-sm);
+}
+
+/* ── FORM ELEMENTS ────────────────────────────────────────── */
+/* ⚠️  Nema forme u HTML-u — korisno za budućnost */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+label {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(216, 211, 101, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ── DIVIDERS & SEPARATORS ────────────────────────────────── */
+/* ⚠️  hr i .divider se ne koriste u HTML-u */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-block: var(--space-8);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── BADGES / TAGS ────────────────────────────────────────── */
+/* ⚠️  .badge i varijante se NE koriste u HTML-u — korisno za budućnost */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-accent {
+  background: rgba(216, 211, 101, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(216, 211, 101, 0.3);
+}
+
+.badge-stone {
+  background: rgba(96, 91, 81, 0.4);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.badge-lime {
+  background: rgba(230, 240, 130, 0.1);
+  color: var(--accent-soft);
+  border: 1px solid rgba(230, 240, 130, 0.3);
+}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+/* ✅ .footer se koristi — kreira se u footer.ts kroz JS */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 2.5rem var(--gutter) 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer span {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 30px;
+  transition: all var(--transition-base);
+}
+
+.footer span:hover {
+  color: var(--off-white-stronger);
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(230, 240, 130, 0.15);
+}
+
+.footer p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+/* ⚠️  'footer nav' — ako footer.ts nema <nav> unutar footera, ovo se ne primenjuje */
+footer nav {
+  gap: var(--space-6);
+}
+
+/* ── SELECTION & SCROLLBAR ────────────────────────────────── */
+::selection {
+  background: rgba(216, 211, 101, 0.3);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-stone);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ── UTILITY ──────────────────────────────────────────────── */
+/* ⚠️  Nijedna utility klasa se ne koristi u HTML-u — korisno za budućnost */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-sm {
+  font-size: var(--text-sm);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── ANIMATIONS ───────────────────────────────────────────── */
+/* ⚠️  .animate-fade-up i .animate-fade-in se NE koriste u HTML-u */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: var(--glow-accent);
+  }
+
+  50% {
+    box-shadow: 0 0 48px rgba(216, 211, 101, 0.35);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s var(--transition-slow) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease both;
+}
+
+.delay-1 {
+  animation-delay: 100ms;
+}
+
+.delay-2 {
+  animation-delay: 200ms;
+}
+
+.delay-3 {
+  animation-delay: 300ms;
+}
+
+.delay-4 {
+  animation-delay: 400ms;
+}
+
+.delay-5 {
+  animation-delay: 500ms;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  h1 {
+    font-size: var(--text-3xl);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+  }
+
+  h3 {
+    font-size: var(--text-xl);
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --gutter: 1.25rem;
+  }
+
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ── SOCIAL LINKS ─────────────────────────────────────────── */
+/* ✅ .social-link se koristi u HTML-u */
+/* ⚠️  HTML GREŠKA: Sva 3 linka imaju isti href (Instagram) — GitHub i Contact
+       linkovi su pogrešni, treba ih popraviti u index.html */
+.social-link {
+  position: relative;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-right: 15px;
+  text-decoration: none;
+  transition: color 350ms ease;
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(216, 211, 101, 0.25);
+  transition: all 450ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.social-link:hover {
+  color: var(--off-white);
+}
+
+.social-link:hover::after {
+  background: var(--accent);
+  height: 1.5px;
+  box-shadow: 0 0 8px rgba(216, 211, 101, 0.5);
+}
+
+/* ── MENU ─────────────────────────────────────────────────── */
+/* ✅ .menu-links i .menu-item se koriste u HTML-u */
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-item {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  position: relative;
+  width: fit-content;
+  transition: color 300ms ease;
+  /* samo boja, ne sve */
+}
+
+.menu-item:hover {
+  color: var(--off-white);
+}
+
+/* ⚠️  GREŠKA: .menu-item::after nema 'background' property!
+       Pseudo-element postoji ali je nevidljiv — underline se ne vidi.
+       Dodaj background ako hoćeš underline efekat */
+.menu-item::before {
+  content: '->';
+  position: absolute;
+  left: -2.5rem;
+  /* levo od teksta, ne pomera tekst */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85em;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  /* samo fade, nema pokreta */
+}
+
+.menu-item:hover::before {
+  opacity: 1;
+}
+
+/* ⚠️  .socials klasa se koristi u HTML-u ali NEMA CSS definiciju!
+       Dodato ispod: */
+.socials {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+/* ── ASCII MODEL ──────────────────────────────────────────── */
+main,
+.container {
+  padding-right: 100px;
+}
+
+/* ✅ .ascii-model se koristi kroz AsciiModel.ts */
+.ascii-model table {
+  border-collapse: collapse;
+  border: none;
+}
+
+.ascii-model td {
+  padding: 0;
+  line-height: 1;
+}
+
+.shimmer-text {
+  display: inline-block;
+  color: white;
+
+  /* trik */
+  background: linear-gradient(90deg,
+      currentColor 0%,
+      rgba(255, 255, 255, 0.6) 40%,
+      rgba(255, 255, 255, 0.6) 60%,
+      currentColor 100%);
+
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position-x: -100%;
+  }
+
+  to {
+    background-position-x: 250%;
+  }
+}
+
+.music-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0px;
+  /* malo više prostora između "Music" i now-playing teksta */
+}
+
+#now-playing-container {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+
+  /* Poravnanje sa Music tekstom — inline na istoj liniji */
+  display: inline-flex;
+  align-items: center;
+
+  vertical-align: baseline;
+  position: relative;
+  top: 5px;
+
+  transform: translateX(-8px);
+  white-space: nowrap;
+
+  /* Footer stil */
+  font-size: 0.82rem;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+
+  /* Bez underline-a */
+  text-decoration: none;
+}
+
+/* Hover na music-wrapper — pojavljuje se now-playing */
+.music-wrapper a:hover~#now-playing-container {
+  opacity: 0.7;
+  transform: translateX(0);
+  color: var(--off-white);
+  text-shadow: 0 0 8px rgba(216, 211, 101, 0.5);
+}
+
+.np-container {
+  display: inline-block;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.np-text {
+  white-space: nowrap;
+  display: inline-block;
+  letter-spacing: 0.08em;
+  /* više prostora između slova u marquee */
+}
+
+.np-text.marquee {
+  will-change: transform;
+  animation: marquee var(--marquee-duration, 10s) linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.contact-copy {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+  /* ← ovo, ne hidden */
+  height: 1.7rem;
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: bottom;
+}
+
+.copy-text {
+  display: block;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 300ms ease;
+}
+
+/* Vidljiv tekst */
+.copy-text-in {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Sakriven tekst (ispod) */
+.copy-text-out {
+  transform: translateY(100%);
+  opacity: 0;
+  position: absolute;
+  top: 0;
+}
+
+/* Kada je copied — swap */
+.contact-copy.copied .copy-text-in {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.contact-copy.copied .copy-text-out {
+  transform: translateY(0);
+  opacity: 1;
+}
