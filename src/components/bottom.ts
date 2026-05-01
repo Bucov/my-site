@@ -106,5 +106,46 @@ export function Footer() {
     updateClock();
     setInterval(updateClock, 1000);
 
+
+    // === Scroll‑based opacity ===
+    function updateFooterOpacity() {
+        // If the page isn’t scrollable, always show the footer
+        if (document.body.scrollHeight <= window.innerHeight) {
+            footer.style.opacity = '1';
+            return;
+        }
+
+        // Distance from the bottom of the viewport to the bottom of the page
+        const distanceFromBottom =
+            document.body.scrollHeight - window.innerHeight - window.scrollY;
+
+        // How far above the bottom we want the footer to start fading in
+        // Adjust this value (in pixels) to suit your footer height + padding.
+        const fadeThreshold = 250;
+
+        // Map distance to opacity: 0 when distance >= threshold, 1 when distance = 0
+        let opacity = 1 - distanceFromBottom / fadeThreshold;
+        opacity = Math.max(0, Math.min(1, opacity));
+
+        footer.style.opacity = String(opacity);
+    }
+
+    // Throttle the scroll handler for performance
+    let ticking = false;
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateFooterOpacity();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+
+    // Initial check + listen to scroll & resize
+    updateFooterOpacity();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateFooterOpacity);
+
     return footer;
 }

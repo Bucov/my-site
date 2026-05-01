@@ -114,6 +114,10 @@ body {
   overflow-x: hidden;
 }
 
+.lenis {
+  overflow: hidden;
+}
+
 img,
 video,
 svg {
@@ -613,7 +617,20 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  /* Keep your existing gradient */
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      var(--bg-primary, #1a1816) 100%);
+
+  /* 👇 New for scroll‑based visibility */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  /* smooth fade in/out */
+  will-change: opacity;
+  /* performance hint */
 }
+
 
 .footer span {
   font-size: var(--text-base);
@@ -624,6 +641,38 @@ hr {
 }
 
 .footer span:hover {
+  color: var(--off-white-stronger);
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(230, 240, 130, 0.15);
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  gap: 0px;
+
+}
+
+.projects-span {
+  width: fit-content;
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 15px;
+  transition: all var(--transition-base);
+}
+
+.projects-date {
+  width: fit-content;
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+  font-weight: 400;
+  margin-bottom: 15px;
+  transition: all var(--transition-base);
+}
+
+.projects-span:hover {
   color: var(--off-white-stronger);
   opacity: 1;
   text-shadow: 0 0 8px rgba(230, 240, 130, 0.15);
@@ -1293,4 +1342,190 @@ main,
     justify-content: center;
     transform: translateY(10px);
   }
+}
+
+.photos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0px;
+}
+
+/* ── PHOTOS PAGE ──────────────────────────────────────────── */
+
+/* Sticky big background text */
+.photos-bg-title {
+  position: fixed;
+  bottom: -2vh;
+  left: 6vw;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(110px, 25vw, 420px);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--text-primary);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+/* Scrollable layer on top */
+.photos-content {
+  position: relative;
+  z-index: 1;
+  padding: 10vh 6vw 30vh;
+}
+
+@media (min-width: 768px) {
+  .photos-content {
+    padding: 14vh 8vw 30vh;
+  }
+}
+
+/* Nav row */
+.photos-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: clamp(16px, 3vw, 20px);
+  margin-bottom: 6vh;
+  font-family: var(--font-display);
+}
+
+.photos-nav-current {
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+/* Masonry grid */
+.photos-grid {
+  columns: 1;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .photos-grid {
+    columns: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .photos-grid {
+    columns: 3;
+  }
+}
+
+/* Each photo card */
+.photo-card {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  position: relative;
+  cursor: pointer;
+
+  /* Fade in on load */
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease,
+    box-shadow 0.3s ease;
+}
+
+.photo-card.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.3s ease;
+  filter: grayscale(15%);
+}
+
+
+
+/* Shimmer placeholder while loading */
+.photo-placeholder {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  width: 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* Lightbox overlay */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90dvh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: color 0.2s ease;
+  padding: 0.5rem;
+}
+
+.lightbox-close:hover {
+  color: var(--accent);
+}
+
+/* Empty state */
+.photos-empty {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
