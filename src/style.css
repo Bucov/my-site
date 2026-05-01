@@ -608,7 +608,7 @@ hr {
   left: 0;
   right: 0;
   z-index: 10;
-  padding: 2.5rem var(--gutter) 2rem;
+  padding: 2.5rem var(--gutter) 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -619,7 +619,7 @@ hr {
   font-size: var(--text-base);
   color: var(--text-primary);
   font-weight: 500;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   transition: all var(--transition-base);
 }
 
@@ -897,6 +897,45 @@ footer nav {
   opacity: 1;
 }
 
+
+.menu-item1 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  position: relative;
+  width: fit-content;
+  transition: color 300ms ease;
+  /* samo boja, ne sve */
+}
+
+.menu-item1:hover {
+  color: var(--off-white);
+}
+
+/* ⚠️  GREŠKA: .menu-item::after nema 'background' property!
+       Pseudo-element postoji ali je nevidljiv — underline se ne vidi.
+       Dodaj background ako hoćeš underline efekat */
+.menu-item1::before {
+  content: '<-';
+  position: absolute;
+  left: -2.5rem;
+  /* levo od teksta, ne pomera tekst */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85em;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  /* samo fade, nema pokreta */
+}
+
+.menu-item1:hover::before {
+  opacity: 1;
+}
+
+
 /* ⚠️  .socials klasa se koristi u HTML-u ali NEMA CSS definiciju!
        Dodato ispod: */
 .socials {
@@ -1112,4 +1151,146 @@ main,
   /* malo veći highlight */
   transform: scaleX(1.04);
   /* blagi razvlačenje */
+}
+
+/* ============================================================
+   GIF BUTTON — 4‑state glow + sliding socials
+   ============================================================ */
+
+.gif-button-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 400px;
+  /* 👍 bigger GIF */
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.gif-container {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-md);
+  overflow: visible;
+  transition: transform var(--transition-fast);
+  cursor: pointer;
+  /* 👈 hand/pointer cursor */
+  width: 100%;
+}
+
+.gif-container:hover {
+  transform: scale(1.02);
+}
+
+.gif-main {
+  width: 100%;
+  display: block;
+  border-radius: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+/* Glow ring – visible only on hover (and NOT after click) */
+.glow-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 0px var(--off-white-stronger);
+  transition: opacity 0.2s ease;
+}
+
+.gif-container:hover .glow-ring {
+  opacity: 1;
+  animation: glowIntensify 1.8s ease-out forwards;
+}
+
+/* Disable glow entirely once clicked */
+.gif-container.clicked .glow-ring {
+  animation: none;
+  opacity: 0 !important;
+}
+
+@keyframes glowIntensify {
+  0% {
+    box-shadow: 0 0 8px var(--off-white-stronger);
+  }
+
+  50% {
+    box-shadow: 0 0 28px var(--off-white-stronger);
+  }
+
+  100% {
+    box-shadow: 0 0 48px var(--off-white-stronger),
+      0 0 80px rgba(247, 244, 178, 0.6);
+  }
+}
+
+/* Social panel */
+/* Social panel – container remains unchanged */
+.gif-socials {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity var(--transition-slow),
+    transform var(--transition-slow);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.gif-socials.visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Links now mirror .social-link exactly */
+.gif-socials a {
+  position: relative;
+  color: var(--text-secondary);
+  font-weight: 400;
+  text-decoration: none;
+  transition: color 350ms ease;
+}
+
+.gif-socials a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(216, 211, 101, 0.25);
+  transition: all 450ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.gif-socials a:hover {
+  color: var(--off-white);
+}
+
+.gif-socials a:hover::after {
+  background: var(--accent);
+  height: 1.5px;
+  box-shadow: 0 0 8px rgba(216, 211, 101, 0.5);
+}
+
+/* Responsive stacking */
+@media (max-width: 600px) {
+  .gif-button-wrapper {
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+  }
+
+  .gif-socials {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    transform: translateY(10px);
+  }
 }
