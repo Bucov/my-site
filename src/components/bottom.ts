@@ -120,7 +120,7 @@ export function Footer() {
             document.body.scrollHeight - window.innerHeight - window.scrollY;
 
         // How far above the bottom we want the footer to start fading in
-        // Adjust this value (in pixels) to suit your footer height + padding.
+        // Adjust this value (in pixels) 
         const fadeThreshold = 250;
 
         // Map distance to opacity: 0 when distance >= threshold, 1 when distance = 0

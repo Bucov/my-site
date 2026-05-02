@@ -3,6 +3,10 @@ import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js'
 import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
+// ASCII generator by AndrewSink - https://github.com/AndrewSink/STL-to-ASCII-Generator
+
+
+
 export interface AsciiModelOptions {
     /** Path to the .stl file, relative to /public   */
     stlPath: string
@@ -16,7 +20,7 @@ export interface AsciiModelOptions {
     autoRotate?: boolean
     /** Auto-rotate the light (default: true) */
     autoRotateLight?: boolean
-    /** Text color of ASCII chars (default: '#D8D365' — your accent yellow) */
+    /** Text color of ASCII chars (default: '#D8D365' —  accent yellow) */
     color?: string
     /** Background color of panel (default: 'transparent') */
     background?: string

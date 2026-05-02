@@ -22,7 +22,7 @@ export function NowPlaying(): HTMLSpanElement {
             const cacheKey = "lastfm_now_playing";
             const cacheTimeKey = "lastfm_now_playing_ts";
 
-            // 🔹 CACHE
+
             if (!skipCache) {
                 const cached = sessionStorage.getItem(cacheKey);
                 const cachedTs = sessionStorage.getItem(cacheTimeKey);
@@ -33,7 +33,7 @@ export function NowPlaying(): HTMLSpanElement {
                 }
             }
 
-            // 🔹 FETCH
+
             const res = await fetch(
                 `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=bucovListens&api_key=0e72a231020a1a5bec443a48adf0623f&format=json&limit=1`
             );
@@ -50,10 +50,10 @@ export function NowPlaying(): HTMLSpanElement {
                     live,
                 };
 
-                // 🔹 UPDATE
+
                 updateUI(np);
 
-                // 🔹 SAVE CACHE
+
                 sessionStorage.setItem(cacheKey, JSON.stringify(np));
                 sessionStorage.setItem(cacheTimeKey, String(Date.now()));
             } else {
@@ -81,13 +81,13 @@ export function NowPlaying(): HTMLSpanElement {
             const needsMarquee = inner.scrollWidth > container.clientWidth;
 
             if (needsMarquee) {
-                // Snimi originalni tekst pre duplikacije
+
                 const separator = '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
                 const single = text + separator;
-                inner.textContent = single + single; // tačno duplo
+                inner.textContent = single + single;
 
-                // Postavi duration na osnovu dužine teksta
-                const duration = single.length * 0.18; // ~0.18s po karakteru
+
+                const duration = single.length * 0.18;
                 inner.style.setProperty('--marquee-duration', `${duration}s`);
                 inner.classList.add('marquee');
             } else {
@@ -96,10 +96,10 @@ export function NowPlaying(): HTMLSpanElement {
         });
     }
 
-    // 🔹 INIT
+
     fetchNowPlaying();
 
-    // 🔹 AUTO REFRESH
+
     setInterval(() => fetchNowPlaying(true), 30000);
 
     return wrapper;

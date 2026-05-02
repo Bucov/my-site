@@ -2,11 +2,7 @@ import '../style.css'
 import Lenis from 'lenis'
 import { Footer } from '../components/bottom'
 
-// ================================================================
-// DODAJ SVOJE FOTOGRAFIJE OVDE
-// Stavi ih u /public/photos/ folder
-// Format: { src: '/photos/ime-fajla.jpg', alt: 'opis' }
-// ================================================================
+
 const photos: { src: string; alt: string }[] = [
     { src: '/photos/IMG_0355.jpg', alt: '' },
     { src: '/photos/IMG_0359_SnapseedCopy.jpg', alt: '' },
@@ -24,23 +20,28 @@ const photos: { src: string; alt: string }[] = [
 
 ]
 
-// ── LENIS ───────────────────────────────────────────────────────
+// LENIS SMOOTH SCROLLING 
 const lenis = new Lenis({
-    duration: 1.35,
+    duration: 1.35,                    // speed
     easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    wheelMultiplier: 1.2,
+
+    wheelMultiplier: 1.2,              // scroll sens
     touchMultiplier: 2,
     infinite: false,
 })
 
+// raf function
 function raf(time: number) {
     lenis.raf(time)
     requestAnimationFrame(raf)
 }
 requestAnimationFrame(raf)
 
+// gsap sync
+lenis.on('scroll', () => {
 
+})
 
 // ── RENDER PHOTOS ────────────────────────────────────────────────
 const grid = document.getElementById('photos-grid')!
@@ -63,7 +64,7 @@ if (photos.length === 0) {
             setTimeout(() => card.classList.add('loaded'), i * 60)
         })
 
-        // Lightbox on click
+        // no lightbox, just open the image in a new tab
         card.addEventListener('click', () => {
             window.open(src, '_blank')
         })
