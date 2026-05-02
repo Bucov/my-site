@@ -35,7 +35,7 @@ lenis.on('scroll', () => {
 // Three.js canvas
 // const canvas = document.querySelector<HTMLCanvasElement>('#bg')!;
 document.body.appendChild(AsciiModel({
-    stlPath: '/models/ribaPastrmka.stl',
+    stlPath: '/my-site/models/ribaPastrmka.stl',
     panelWidth: 680,
     autoRotate: true,
     color: '#f7f4b2',

@@ -4,18 +4,18 @@ import { Footer } from '../components/bottom'
 
 
 const photos: { src: string; alt: string }[] = [
-    { src: '/photos/IMG_0355.jpg', alt: '' },
-    { src: '/photos/IMG_0359_SnapseedCopy.jpg', alt: '' },
-    { src: '/photos/IMG_0366.jpg', alt: '' },
-    { src: '/photos/IMG_4799.JPG', alt: '' },
-    { src: '/photos/Snapseed.jpg', alt: '' },
-    { src: '/photos/IMG_0370.jpg', alt: '' },
-    { src: '/photos/IMG_0379.jpg', alt: '' },
-    { src: '/photos/IMG_1575.jpg', alt: '' },
-    { src: '/photos/IMG_1576.jpg', alt: '' },
-    { src: '/photos/IMG_1989.jpg', alt: '' },
-    { src: '/photos/IMG_1994.jpg', alt: '' },
-    { src: '/photos/IMG_1999.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_0355.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_0359_SnapseedCopy.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_0366.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_4799.JPG', alt: '' },
+    { src: '/my-site/photos/Snapseed.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_0370.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_0379.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_1575.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_1576.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_1989.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_1994.jpg', alt: '' },
+    { src: '/my-site/photos/IMG_1999.jpg', alt: '' },
 
 
 ]
