@@ -1529,3 +1529,80 @@ main,
   color: var(--text-secondary);
   line-height: 1.5;
 }
+
+/* Shared treatment for external text links across the home and About pages. */
+.social-link,
+.gif-socials a,
+.paragraph-link {
+  position: relative;
+  color: var(--text-secondary);
+  font-weight: 400;
+  padding: 0;
+  border-radius: 0;
+  transition: color 350ms ease;
+}
+
+.gif-socials a {
+  width: fit-content;
+}
+
+.paragraph-link::before {
+  content: none;
+}
+
+.social-link::after,
+.gif-socials a::after,
+.paragraph-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(216, 211, 101, 0.25);
+  transition: background 350ms ease, box-shadow 350ms ease;
+}
+
+.social-link:hover,
+.social-link:focus-visible,
+.gif-socials a:hover,
+.gif-socials a:focus-visible,
+.paragraph-link:hover,
+.paragraph-link:focus-visible {
+  color: var(--off-white);
+  font-weight: 400;
+}
+
+.social-link:hover::after,
+.social-link:focus-visible::after,
+.gif-socials a:hover::after,
+.gif-socials a:focus-visible::after,
+.paragraph-link:hover::after,
+.paragraph-link:focus-visible::after {
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(216, 211, 101, 0.5);
+}
+
+.music-wrapper .social-link:hover::after {
+  height: 1.5px;
+}
+
+.project-loader {
+  display: inline-block;
+  width: 1ch;
+  margin-left: 0.35rem;
+  color: var(--accent);
+  font-family: monospace;
+  line-height: 1;
+  text-align: center;
+  animation: project-spin 1.2s steps(8) infinite;
+}
+
+@keyframes project-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-loader { animation: none; }
+}
